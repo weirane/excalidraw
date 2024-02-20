@@ -771,11 +771,11 @@ export const getFrameLikeTitle = (
   frameIdx: number,
 ) => {
   // TODO name frames "AI" only if specific to AI frames
-  return element.name === null
-    ? isFrameElement(element)
-      ? `Frame ${frameIdx}`
-      : `AI Frame $${frameIdx}`
-    : element.name;
+  const existingName = element.name?.trim();
+  if (existingName) {
+    return existingName;
+  }
+  return isFrameElement(element) ? `Frame ${frameIdx}` : `AI Frame ${frameIdx}`;
 };
 
 export const getElementsOverlappingFrame = (
