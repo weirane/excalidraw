@@ -252,13 +252,6 @@ export const computeBoundTextPosition = (
   boundTextElement: ExcalidrawTextElementWithContainer,
   elementsMap: ElementsMap,
 ) => {
-  if (isArrowElement(container)) {
-    return LinearElementEditor.getBoundTextElementPosition(
-      container,
-      boundTextElement,
-      elementsMap,
-    );
-  }
   const containerCoords = getContainerCoords(container);
   const maxContainerHeight = getBoundTextMaxHeight(container, boundTextElement);
   const maxContainerWidth = getBoundTextMaxWidth(container, boundTextElement);
