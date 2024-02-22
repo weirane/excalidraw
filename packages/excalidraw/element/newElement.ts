@@ -121,6 +121,7 @@ const _newElementBase = <T extends ExcalidrawElement>(
     isDeleted: false as false,
     boundElements,
     updated: getUpdatedTimestamp(),
+    elementType: type,
     link,
     locked,
     customData: rest.customData,
@@ -399,7 +400,7 @@ export const newLinearElement = (
     points?: ExcalidrawLinearElement["points"];
   } & ElementConstructorOpts,
 ): NonDeleted<ExcalidrawLinearElement> => {
-  return {
+  const ret = {
     ..._newElementBase<ExcalidrawLinearElement>(opts.type, opts),
     points: opts.points || [],
     lastCommittedPoint: null,
@@ -408,6 +409,8 @@ export const newLinearElement = (
     startArrowhead: opts.startArrowhead || null,
     endArrowhead: opts.endArrowhead || null,
   };
+  ret.elementType = "image";
+  return ret;
 };
 
 export const newImageElement = (

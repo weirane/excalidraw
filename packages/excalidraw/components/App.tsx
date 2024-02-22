@@ -2040,6 +2040,7 @@ class App extends React.Component<AppProps, AppState> {
           height: maxY - minY + padding * 2,
           opacity: 100,
           locked: false,
+          elementType: "magic-frame",
         });
 
         this.scene.addNewElement(frame);
@@ -3319,6 +3320,7 @@ class App extends React.Component<AppProps, AppState> {
             text,
             lineHeight,
             frameId: topLayerFrame ? topLayerFrame.id : null,
+            elementType: "text",
           });
           acc.push(element);
           currentY += element.height + LINE_GAP;
@@ -4519,6 +4521,7 @@ class App extends React.Component<AppProps, AppState> {
           text: "",
           fontSize,
           fontFamily,
+          elementType: "text",
           textAlign: parentCenterPosition
             ? "center"
             : this.state.currentItemTextAlign,
@@ -6435,6 +6438,7 @@ class App extends React.Component<AppProps, AppState> {
       roughness: this.state.currentItemRoughness,
       opacity: this.state.currentItemOpacity,
       roundness: null,
+      elementType,
       simulatePressure: event.pressure === 0.5,
       locked: false,
       frameId: topLayerFrame ? topLayerFrame.id : null,
@@ -6507,6 +6511,7 @@ class App extends React.Component<AppProps, AppState> {
       roughness: this.state.currentItemRoughness,
       roundness: this.getCurrentItemRoundness("iframe"),
       opacity: this.state.currentItemOpacity,
+      elementType: "iframe",
       locked: false,
       width,
       height,
@@ -6565,6 +6570,7 @@ class App extends React.Component<AppProps, AppState> {
       opacity: this.state.currentItemOpacity,
       locked: false,
       width: embedLink.intrinsicSize.w,
+      elementType: "embeddable",
       height: embedLink.intrinsicSize.h,
       link,
     });
@@ -6613,6 +6619,7 @@ class App extends React.Component<AppProps, AppState> {
       roughness: this.state.currentItemRoughness,
       roundness: null,
       opacity: this.state.currentItemOpacity,
+      elementType: "image",
       locked: false,
       frameId: topLayerFrame ? topLayerFrame.id : null,
     });
@@ -6698,6 +6705,7 @@ class App extends React.Component<AppProps, AppState> {
 
       const element = newLinearElement({
         type: elementType,
+        elementType: "line",
         x: gridX,
         y: gridY,
         strokeColor: this.state.currentItemStrokeColor,
@@ -6801,11 +6809,13 @@ class App extends React.Component<AppProps, AppState> {
     if (elementType === "embeddable") {
       element = newEmbeddableElement({
         type: "embeddable",
+        elementType: "embeddable",
         ...baseElementAttributes,
       });
     } else {
       element = newElement({
         type: elementType,
+        elementType: elementType,
         ...baseElementAttributes,
       });
     }
@@ -6842,6 +6852,7 @@ class App extends React.Component<AppProps, AppState> {
       y: gridY,
       opacity: this.state.currentItemOpacity,
       locked: false,
+      elementType: type,
       ...FRAME_STYLE,
     } as const;
 
