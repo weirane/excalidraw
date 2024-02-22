@@ -8347,7 +8347,7 @@ class App extends React.Component<AppProps, AppState> {
       imageFile,
     ) as Promise<FileId>) || generateIdFromFile(imageFile));
 
-    if (!fileId) {
+    if (fileId) {
       console.warn(
         "Couldn't generate file id or the supplied `generateIdForFile` didn't resolve to one.",
       );
