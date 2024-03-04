@@ -15,7 +15,7 @@ export const actionAddToLibrary = register({
     });
 
     for (const type of LIBRARY_DISABLED_TYPES) {
-      if (selectedElements.some((element) => element.type === type)) {
+      if (selectedElements.some((element) => element.elementType === type)) {
         return {
           commitToHistory: false,
           appState: {
