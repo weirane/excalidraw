@@ -23,6 +23,7 @@ const elementBase: Omit<ExcalidrawElement, "type"> = {
   isDeleted: false,
   boundElements: null,
   updated: 1,
+  elementType: "rectangle",
   link: null,
   locked: false,
 };

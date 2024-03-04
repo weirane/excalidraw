@@ -69,6 +69,7 @@ export type ElementConstructorOpts = MarkOptional<
   | "roundness"
   | "locked"
   | "opacity"
+  | "elementType"
   | "customData"
 >;
 
