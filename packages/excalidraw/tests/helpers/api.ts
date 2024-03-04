@@ -188,6 +188,7 @@ export class API {
       roughness: rest.roughness ?? appState.currentItemRoughness,
       opacity: rest.opacity ?? appState.currentItemOpacity,
       boundElements: rest.boundElements ?? null,
+      elementType: type,
       locked: rest.locked ?? false,
     };
     switch (type) {
