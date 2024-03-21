@@ -244,7 +244,10 @@ export const generateIdFromFile = async (file: File): Promise<FileId> => {
       "SHA-1",
       await blobToArrayBuffer(file),
     );
-    return bytesToHexString(new Uint8Array(hashBuffer)) as FileId;
+    const bytes = new Uint8Array(hashBuffer);
+    return Array.from(bytes)
+      .map((byte) => byte.toString(16))
+      .join("") as FileId;
   } catch (error: any) {
     console.error(error);
     // length 40 to align with the HEX length of SHA-1 (which is 160 bit)
